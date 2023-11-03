@@ -11,7 +11,7 @@ enum Auth {
 
 class AuthScreen extends StatefulWidget {
   static const String routeName = '/auth-screen';
-  const AuthScreen({super.key});
+  const AuthScreen({Key? key}) : super(key: key);
 
   @override
   State<AuthScreen> createState() => _AuthScreenState();
@@ -48,7 +48,6 @@ class _AuthScreenState extends State<AuthScreen> {
       context: context,
       email: _emailController.text,
       password: _passwordController.text,
-      name: _nameController.text,
     );
   }
 
@@ -102,23 +101,17 @@ class _AuthScreenState extends State<AuthScreen> {
                           controller: _nameController,
                           hintText: 'Name',
                         ),
-                        const SizedBox(
-                          height: 10,
-                        ),
+                        const SizedBox(height: 10),
                         CustomTextField(
                           controller: _emailController,
                           hintText: 'Email',
                         ),
-                        const SizedBox(
-                          height: 10,
-                        ),
+                        const SizedBox(height: 10),
                         CustomTextField(
                           controller: _passwordController,
                           hintText: 'Password',
                         ),
-                        const SizedBox(
-                          height: 10,
-                        ),
+                        const SizedBox(height: 10),
                         CustomButton(
                           text: 'Sign Up',
                           onTap: () {
@@ -126,7 +119,7 @@ class _AuthScreenState extends State<AuthScreen> {
                               signUpUser();
                             }
                           },
-                        ),
+                        )
                       ],
                     ),
                   ),
@@ -136,7 +129,7 @@ class _AuthScreenState extends State<AuthScreen> {
                     ? GlobalVariables.backgroundColor
                     : GlobalVariables.greyBackgroundCOlor,
                 title: const Text(
-                  'Sign-In',
+                  'Sign-In.',
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
                   ),
@@ -164,16 +157,12 @@ class _AuthScreenState extends State<AuthScreen> {
                           controller: _emailController,
                           hintText: 'Email',
                         ),
-                        const SizedBox(
-                          height: 10,
-                        ),
+                        const SizedBox(height: 10),
                         CustomTextField(
                           controller: _passwordController,
                           hintText: 'Password',
                         ),
-                        const SizedBox(
-                          height: 10,
-                        ),
+                        const SizedBox(height: 10),
                         CustomButton(
                           text: 'Sign In',
                           onTap: () {
@@ -181,7 +170,7 @@ class _AuthScreenState extends State<AuthScreen> {
                               signInUser();
                             }
                           },
-                        ),
+                        )
                       ],
                     ),
                   ),

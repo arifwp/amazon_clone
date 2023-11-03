@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'dart:convert';
 
 import 'package:amazon_clone/common/widgets/bottom_bar.dart';
@@ -23,8 +25,8 @@ class AuthService {
       User user = User(
         id: '',
         name: name,
-        email: email,
         password: password,
+        email: email,
         address: '',
         type: '',
         token: '',
@@ -44,7 +46,7 @@ class AuthService {
         onSuccess: () {
           showSnackbar(
             context,
-            'Account created! Login with the same credentials',
+            'Account created! Login with the same credentials!',
           );
         },
       );
@@ -58,7 +60,6 @@ class AuthService {
     required BuildContext context,
     required String email,
     required String password,
-    required String name,
   }) async {
     try {
       http.Response res = await http.post(
@@ -91,7 +92,9 @@ class AuthService {
   }
 
   // get user data
-  void getUserData(BuildContext context) async {
+  void getUserData(
+    BuildContext context,
+  ) async {
     try {
       SharedPreferences prefs = await SharedPreferences.getInstance();
       String? token = prefs.getString('x-auth-token');
@@ -100,16 +103,17 @@ class AuthService {
         prefs.setString('x-auth-token', '');
       }
 
-      var tokenRes = await http.post(Uri.parse('$uri/tokenIsValid'),
-          headers: <String, String>{
-            'Content-Type': 'application/json; charset=UTF-8',
-            'x-auth-token': token!
-          });
+      var tokenRes = await http.post(
+        Uri.parse('$uri/tokenIsValid'),
+        headers: <String, String>{
+          'Content-Type': 'application/json; charset=UTF-8',
+          'x-auth-token': token!
+        },
+      );
 
       var response = jsonDecode(tokenRes.body);
 
       if (response == true) {
-        // get user data
         http.Response userRes = await http.get(
           Uri.parse('$uri/'),
           headers: <String, String>{
