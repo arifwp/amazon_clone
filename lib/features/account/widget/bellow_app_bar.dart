@@ -26,7 +26,11 @@ class BellowAppBar extends StatelessWidget {
               children: [
                 TextSpan(
                   text: user.name,
-                  style: const TextStyle(fontSize: 22, color: Colors.black),
+                  style: const TextStyle(
+                    fontSize: 22,
+                    color: Colors.black,
+                    fontWeight: FontWeight.w600,
+                  ),
                 ),
               ],
             ),
