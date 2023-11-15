@@ -36,15 +36,17 @@ authRouter.post("/api/signup", async (req, res) => {
 authRouter.post("/api/signin", async (req, res) => {
   try {
     const { email, password } = req.body;
+
     const user = await User.findOne({ email });
     if (!user) {
       return res
         .status(400)
-        .json({ msg: "User with this email does not exists" });
+        .json({ msg: "User with this email does not exist!" });
     }
+
     const isMatch = await bcryptjs.compare(password, user.password);
     if (!isMatch) {
-      return res.status(400).json({ msg: "Incorrect password" });
+      return res.status(400).json({ msg: "Incorrect password." });
     }
 
     const token = jwt.sign({ id: user._id }, "passwordKey");

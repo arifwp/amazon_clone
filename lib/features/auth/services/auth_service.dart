@@ -103,6 +103,8 @@ class AuthService {
         prefs.setString('x-auth-token', '');
       }
 
+      print(token);
+
       var tokenRes = await http.post(
         Uri.parse('$uri/tokenIsValid'),
         headers: <String, String>{
@@ -126,7 +128,8 @@ class AuthService {
         userProvider.setUser(userRes.body);
       }
     } catch (e) {
-      showSnackBar(context, e.toString());
+      print(e.toString());
+      // showSnackBar(context, e.toString());
     }
   }
 }

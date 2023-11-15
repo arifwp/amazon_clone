@@ -1,6 +1,7 @@
 import 'package:amazon_clone/common/widgets/custom_button.dart';
 import 'package:amazon_clone/common/widgets/custom_textfield.dart';
 import 'package:amazon_clone/constants/global_variable.dart';
+import 'package:amazon_clone/constants/utils.dart';
 import 'package:amazon_clone/features/auth/services/auth_service.dart';
 import 'package:flutter/material.dart';
 
@@ -166,10 +167,8 @@ class _AuthScreenState extends State<AuthScreen> {
                         CustomButton(
                           text: 'Sign In',
                           onTap: () {
-                            if (_signInFormKey.currentState != null) {
-                              if (_signInFormKey.currentState!.validate()) {
-                                signInUser();
-                              }
+                            if (_signInFormKey.currentState!.validate()) {
+                              signInUser();
                             }
                           },
                         )
