@@ -4,6 +4,7 @@ const mongoose = require("mongoose");
 
 // IMPORTS FROM OTHER FILES
 const authRouter = require("./routes/auth");
+const adminRouter = require("./routes/admin");
 
 // INIT
 const app = express();
@@ -14,6 +15,7 @@ const DB =
 // middleware
 app.use(express.json());
 app.use(authRouter);
+app.use(adminRouter);
 
 // CONNECTIONS
 mongoose
