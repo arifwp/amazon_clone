@@ -11,7 +11,7 @@ const productSchema = mongoose.Schema({
     required: true,
     trim: true,
   },
-  image: [
+  images: [
     {
       type: String,
       required: true,
@@ -29,7 +29,6 @@ const productSchema = mongoose.Schema({
     type: String,
     required: true,
   },
-  // ratings
 });
 
 const Product = mongoose.model("Product", productSchema);

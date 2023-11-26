@@ -11,7 +11,7 @@ import 'package:flutter/material.dart';
 
 class AddProductScreen extends StatefulWidget {
   static const String routeName = '/add-product';
-  const AddProductScreen({super.key});
+  const AddProductScreen({Key? key}) : super(key: key);
 
   @override
   State<AddProductScreen> createState() => _AddProductScreenState();
@@ -23,6 +23,7 @@ class _AddProductScreenState extends State<AddProductScreen> {
   final TextEditingController priceController = TextEditingController();
   final TextEditingController quantityController = TextEditingController();
   final AdminServices adminServices = AdminServices();
+
   String category = 'Mobiles';
   List<File> images = [];
   final _addProductFormKey = GlobalKey<FormState>();
@@ -41,7 +42,7 @@ class _AddProductScreenState extends State<AddProductScreen> {
     'Essentials',
     'Appliances',
     'Books',
-    'Fashion',
+    'Fashion'
   ];
 
   void sellProduct() {
@@ -71,15 +72,18 @@ class _AddProductScreenState extends State<AddProductScreen> {
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(50),
         child: AppBar(
-            flexibleSpace: Container(
-              decoration: const BoxDecoration(
-                gradient: GlobalVariables.appBarGradient,
-              ),
+          flexibleSpace: Container(
+            decoration: const BoxDecoration(
+              gradient: GlobalVariables.appBarGradient,
             ),
-            title: const Text(
-              'Add Product',
-              style: TextStyle(color: Colors.black),
-            )),
+          ),
+          title: const Text(
+            'Add Product',
+            style: TextStyle(
+              color: Colors.black,
+            ),
+          ),
+        ),
       ),
       body: SingleChildScrollView(
         child: Form(
@@ -88,20 +92,20 @@ class _AddProductScreenState extends State<AddProductScreen> {
             padding: const EdgeInsets.symmetric(horizontal: 10.0),
             child: Column(
               children: [
-                const SizedBox(
-                  height: 20,
-                ),
+                const SizedBox(height: 20),
                 images.isNotEmpty
                     ? CarouselSlider(
-                        items: images.map((i) {
-                          return Builder(
-                            builder: (BuildContext context) => Image.file(
-                              i,
-                              fit: BoxFit.cover,
-                              height: 200,
-                            ),
-                          );
-                        }).toList(),
+                        items: images.map(
+                          (i) {
+                            return Builder(
+                              builder: (BuildContext context) => Image.file(
+                                i,
+                                fit: BoxFit.cover,
+                                height: 200,
+                              ),
+                            );
+                          },
+                        ).toList(),
                         options: CarouselOptions(
                           viewportFraction: 1,
                           height: 200,
@@ -127,53 +131,41 @@ class _AddProductScreenState extends State<AddProductScreen> {
                                   Icons.folder_open,
                                   size: 40,
                                 ),
-                                const SizedBox(
-                                  height: 15,
-                                ),
+                                const SizedBox(height: 15),
                                 Text(
                                   'Select Product Images',
                                   style: TextStyle(
                                     fontSize: 15,
                                     color: Colors.grey.shade400,
                                   ),
-                                )
+                                ),
                               ],
                             ),
                           ),
                         ),
                       ),
-                const SizedBox(
-                  height: 30,
-                ),
+                const SizedBox(height: 30),
                 CustomTextField(
                   controller: productNameController,
                   hintText: 'Product Name',
                 ),
-                const SizedBox(
-                  height: 10,
-                ),
+                const SizedBox(height: 10),
                 CustomTextField(
                   controller: descriptionController,
-                  hintText: 'Product Description',
+                  hintText: 'Description',
                   maxLines: 7,
                 ),
-                const SizedBox(
-                  height: 10,
-                ),
+                const SizedBox(height: 10),
                 CustomTextField(
                   controller: priceController,
                   hintText: 'Price',
                 ),
-                const SizedBox(
-                  height: 10,
-                ),
+                const SizedBox(height: 10),
                 CustomTextField(
                   controller: quantityController,
                   hintText: 'Quantity',
                 ),
-                const SizedBox(
-                  height: 10,
-                ),
+                const SizedBox(height: 10),
                 SizedBox(
                   width: double.infinity,
                   child: DropdownButton(
@@ -192,10 +184,11 @@ class _AddProductScreenState extends State<AddProductScreen> {
                     },
                   ),
                 ),
-                const SizedBox(
-                  height: 10,
+                const SizedBox(height: 10),
+                CustomButton(
+                  text: 'Sell',
+                  onTap: sellProduct,
                 ),
-                CustomButton(text: 'Sell', onTap: sellProduct),
               ],
             ),
           ),
